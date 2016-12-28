@@ -1,0 +1,4 @@
+= form_for @picture, url: product_pictures_path(@product), html: { multipart: true } do |form|
+  = form.file_field :image
+  = form.submit
+

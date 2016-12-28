@@ -1,0 +1,27 @@
+:javascript
+  $(document).ready(function(){
+    $('.carousel.carousel-slider').carousel({full_width: true});
+  });
+
+.container
+  .row
+    .m6.s12.col
+      %img(src="#{@product.pictures.first.image.url(:medium)}")
+
+    .m6.s12.col
+      .card
+        .card-content.grey.lighten-4
+          %span.card-title
+            %h3= @product.title
+          %div
+            %h4.green-text
+              = @product.price.format
+          %div
+            %p.flow-text= @product.description
+          %div.center
+            .btn.waves-effect.waves-light.teal.darken-3
+              Order Now
+          
+          
+
+

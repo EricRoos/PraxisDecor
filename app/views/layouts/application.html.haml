@@ -1,0 +1,45 @@
+!!!
+%html
+  %head
+    %title PraxisDecor
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    :javascript
+      Stripe.setPublishableKey('pk_test_8QjMEoyd9OIX24Lcp0Cz16FY');
+  %body
+    %nav
+      .nav-wrapper.container
+        %a.brand-logo{:href => "/"} Praxis Decor
+        %ul#nav-mobile.right.hide-on-med-and-down
+          %li
+            %a{:href => "sass.html"} About
+          %li
+            %a{:href => "/products"} Store
+          %li
+            %a{:href => "/products"} Admin
+    %main
+      .container
+        = yield
+    %footer.page-footer
+      .container
+        .row
+          .col.l6.s12
+            %h5.white-text Praxis Decor
+            %p.grey-text.text-lighten-4 Modern. Unique. Affordable.
+          .col.l4.offset-l2.s12
+            %h5.white-text Links
+            %ul
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Facebook
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Instagram
+      .footer-copyright
+        .container
+          © 2017 Praxis Decor and Homes
+          %a.grey-text.text-lighten-4.right{:href => "#!"} praxishomestx.com
+  :javascript
+    $(document).ready( function(){
+      $('.carousel.carousel-slider').carousel({full_width: true});
+    });

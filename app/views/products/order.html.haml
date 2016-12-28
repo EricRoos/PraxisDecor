@@ -1,0 +1,97 @@
+.container
+  .row
+    .m6.s12.col
+      = form_tag(process_product_path(@product), method: :post, id: "payment-form")  do
+        %span.payment-errors
+        .row
+          .s12.col
+            %label
+              l
+              %span Name (as it appears on card)
+              %input{"data-stripe" => "name", :size => "20", :type => "text"}/
+        .row
+          .s12.col
+            %label
+              %span Card Number
+              %input{"data-stripe" => "number", :size => "20", :type => "text"}/
+        .row
+          .s12.col
+            %label
+              %span Zip Code
+              %input{"data-stripe" => "address_zip", :size => "20", :type => "text"}/
+        .row
+          .s12.col
+            %label
+              %span Expiration (MM/YY)
+        .row
+          .s5.col
+            %input{"data-stripe" => "exp_month", :size => "2", :type => "text"}/
+          .s2.col.center
+            %span /
+          .s5.col
+            %input{"data-stripe" => "exp_year", :size => "2", :type => "text"}/
+        .row
+          .s12.col
+            %label
+              %span CVC
+              %input{"data-stripe" => "cvc", :size => "4", :type => "text"}/
+        .row
+          .s12.col
+            %input.btn.black-text.submit{:type => "submit", :value => "Submit Payment"}/
+
+    .m6.s12.col
+      .card
+        .card-content.white.lighten-4
+          .row
+            .s3.col
+              Item:
+            .s9.col
+              = @product.title
+          .row
+            .s3.col
+              Price:
+            .s9.col
+              = @product.price.format
+          .row
+            %img{src: @product.pictures.first.image.url}
+          
+          
+
+
+:javascript
+  $(function() {
+    var $form = $('#payment-form');
+    $form.submit(function(event) {
+      // Disable the submit button to prevent repeated clicks:
+      $form.find('.submit').prop('disabled', true);
+
+      // Request a token from Stripe:
+      Stripe.card.createToken($form, stripeResponseHandler);
+
+      // Prevent the form from being submitted:
+      return false;
+    });
+  });
+
+  function stripeResponseHandler(status, response) {
+    // Grab the form:
+    var $form = $('#payment-form');
+
+    if (response.error) { // Problem!
+
+      // Show the errors on the form:
+      $form.find('.payment-errors').text(response.error.message);
+      $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+    } else { // Token was created!
+
+      // Get the token ID:
+      var token = response.id;
+
+      // Insert the token ID into the form so it gets submitted to the server:
+      $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+      // Submit the form:
+      $form.get(0).submit();
+    }
+  };

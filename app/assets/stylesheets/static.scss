@@ -1,0 +1,24 @@
+// Place all the styles related to the static controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+nav{
+  margin-bottom: 50px;
+}
+
+.front-banner{
+  position: relative;
+  div{
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.social-media-info{
+  display: flex;
+  justify-content: space-around;
+}
+

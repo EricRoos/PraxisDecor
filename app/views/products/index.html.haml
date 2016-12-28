@@ -1,0 +1,13 @@
+.container
+  .row
+    - @products.each do |product|
+      .m3.col
+        .card.grey.lighten-5
+          .card-image
+            %img(src="#{product.pictures.first.image.url(:thumb)}")
+            %span.card-title.truncate= product.title
+          .card-content
+            %p= product.price.format
+          .card-action.center
+            = link_to product, class: "btn waves-effect waves-light grey" do
+              View

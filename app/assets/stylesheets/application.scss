@@ -1,0 +1,25 @@
+@import "materialize/components/color";
+$primary-color: #46616c;
+$secondary-color: color("grey", "lighten-4") !default;
+//$navbar-font-color: #ffd700;
+@import 'materialize';
+@import "font-awesome";
+@import 'static';
+
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+.card{
+  margin-top: 0;
+}
+img{
+  max-width: 100%;
+  width: 100%;
+}
