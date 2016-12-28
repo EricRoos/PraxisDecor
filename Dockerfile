@@ -6,6 +6,7 @@ RUN mkdir /app
 WORKDIR /app
 
 ENV BUNDLE_PATH /gems/praxisdecor
+EXPOSE 3000
 
 ADD . $app
 
