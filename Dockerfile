@@ -10,4 +10,4 @@ EXPOSE 3000
 
 ADD . $app
 RUN bundle install
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "--pid", "/tmp/server.pid"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "--pid", "/tmp/server.pid"], "-e", "production"]

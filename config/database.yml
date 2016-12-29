@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
+  host: "aa1rdud7u9orbti.chag5iysq9nz.us-west-2.rds.amazonaws.com:3306"
   database: praxis_decor_production
   username: praxis_decor
   password: <%= ENV['PRAXIS_DECOR_DATABASE_PASSWORD'] %>
