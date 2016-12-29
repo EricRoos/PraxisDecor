@@ -9,6 +9,5 @@ ENV BUNDLE_PATH /gems/praxisdecor
 EXPOSE 3000
 
 ADD . $app
-
-CMD ["bundle", "install"]
+RUN bundle install
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "--pid", "/tmp/server.pid"]
