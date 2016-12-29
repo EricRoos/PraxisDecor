@@ -11,5 +11,6 @@ EXPOSE 3000
 ADD . $app
 RUN bundle install
 RUN RAILS_ENV=production bundle exec rake tmp:cache:clear
+RUN RAILS_ENV=production bundle exec rake assets:clobber
 RUN RAILS_ENV=production bundle exec rake assets:precompile
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "--pid", "/tmp/server.pid"], "-e", "production"]
