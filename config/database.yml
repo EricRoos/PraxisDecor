@@ -48,8 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  host: "aa1rdud7u9orbti.chag5iysq9nz.us-west-2.rds.amazonaws.com:3306"
-  database: praxis_decor_production
-  username: praxis_decor
-  password: <%= ENV['PRAXIS_DECOR_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
